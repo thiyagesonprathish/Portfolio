@@ -198,6 +198,74 @@
       border-top: 1px solid #1e2130;
       margin: 0 4rem;
     }
+
+    /* EXPERIENCE */
+    #experience {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, #00e5ff, transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #00e5ff;
+      box-shadow: 0 0 12px #00e5ff;
+    }
+
+    .timeline-date {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      color: #00e5ff;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e8eaf0;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.88rem;
+      color: #6b7280;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: #6b7280;
+      line-height: 1.8;
+      max-width: 680px;
+    }
   </style>
 </head>
 <body>
@@ -276,6 +344,54 @@
         <div class="stat-card">
           <div class="stat-num">BSc</div>
           <div class="stat-label">In Progress — Cardiff Met</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">// 02 — Experience</p>
+    <h2>Work History</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jan 2025 — Present</div>
+        <div class="timeline-role">Team Lead — Catalogue Matching & Annotation</div>
+        <div class="timeline-company">Orfium Sri Lanka</div>
+        <div class="timeline-desc">
+          Lead the team in ensuring sound recording-to-composition (R2C)
+          data accuracy. Drive quality initiatives, mentor staff on research
+          methodologies, and collaborate with Product teams to optimise
+          matching algorithms and workflows for superior rights management
+          and data integrity.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Apr 2024 — Jan 2025</div>
+        <div class="timeline-role">Catalogue Matching Associate</div>
+        <div class="timeline-company">Orfium Sri Lanka</div>
+        <div class="timeline-desc">
+          Specialised in aligning sound recording catalogues with composition
+          catalogues, ensuring accurate attribution of lyrics and melodies.
+          Meticulously cross-referenced creative components to honour original
+          creators and maintain precise rights management.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jan 2023 — Apr 2024</div>
+        <div class="timeline-role">IT Assistant</div>
+        <div class="timeline-company">Sunrich Confectioneries (PVT) LTD</div>
+        <div class="timeline-desc">
+          Provided moderately complex IT support, monitoring and operating
+          hardware and software to meet department goals. Ensured
+          confidentiality of all organisational and departmental data.
         </div>
       </div>
 
