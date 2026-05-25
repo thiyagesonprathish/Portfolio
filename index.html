@@ -449,9 +449,32 @@ nav {
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1rem; }
+@media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
+      #hero {
+        padding-top: 9rem;
+      }
+
       #about, #experience, #skills,
       #education, #contact { padding: 4rem 1.5rem; }
       .about-layout { grid-template-columns: 1fr; gap: 2rem; }
