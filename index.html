@@ -367,12 +367,100 @@
       font-size: 0.78rem;
       color: #6b7280;
     }
+
+    /* CONTACT */
+    #contact {
+      padding: 6rem 4rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #contact p {
+      color: #6b7280;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #1e2130;
+      border-radius: 100px;
+      text-decoration: none;
+      color: #6b7280;
+      font-size: 0.8rem;
+      transition: all 0.25s;
+    }
+
+    .contact-chip:hover {
+      border-color: #00e5ff;
+      color: #00e5ff;
+    }
+
+    .contact-chip svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #1e2130;
+      font-size: 0.75rem;
+      color: #6b7280;
+      letter-spacing: 1px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-tag  { animation: fadeUp 0.8s 0.1s ease both; }
+    .hero-name { animation: fadeUp 0.8s 0.2s ease both; }
+    .hero-sub  { animation: fadeUp 0.8s 0.3s ease both; }
+    .hero-btns { animation: fadeUp 0.8s 0.4s ease both; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      #about, #experience, #skills,
+      #education, #contact { padding: 4rem 1.5rem; }
+      .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .divider { margin: 0 1.5rem; }
+      h2 { font-size: 2rem; }
+    }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="#" class="nav-logo">PT.</a>
+    <a href="#" class="nav-logo">PRATHISH THIYAGESON</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -586,5 +674,81 @@
 
     </div>
   </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">// 05 — Contact</p>
+    <h2>Let's Talk</h2>
+    <p>Open to freelance projects, collaborations, and full-time roles.</p>
+    <p>Reach out through any channel below.</p>
+
+    <div class="contact-links">
+
+      <a href="mailto:thiyagesonprathish@gmail.com" class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        thiyagesonprathish@gmail.com
+      </a>
+
+      <a href="tel:+94771025734" class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        077 1025 734
+      </a>
+
+      <a href="https://linkedin.com/in/prathish-thiyageson02315926a" target="_blank" class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 PRATHISH THIYAGESON — BUILT WITH HTML · CSS · JS</p>
+  </footer>
+
+  <script>
+    // Add reveal class to all sections
+    document.querySelectorAll('section, .timeline-item, .skill-group, .edu-card, .stat-card')
+      .forEach(el => el.classList.add('reveal'));
+
+    // Intersection Observer to trigger animations on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Active nav link highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}`
+          ? '#00e5ff' : '';
+      });
+    });
+  </script>
 </body>
 </html>
