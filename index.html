@@ -13,15 +13,18 @@
       font-family: sans-serif;
     }
 
-    nav {
+nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 4rem;
       border-bottom: 1px solid #1e2130;
-      background: #0b0c10;
+      background: rgba(11, 12, 16, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       position: fixed;
       top: 0; left: 0; right: 0;
+      z-index: 1000;
     }
 
     .nav-logo {
