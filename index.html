@@ -266,6 +266,107 @@
       line-height: 1.8;
       max-width: 680px;
     }
+
+    /* SKILLS */
+    #skills {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-group {
+      background: #161822;
+      border: 1px solid #1e2130;
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .skill-group:hover {
+      border-color: #00e5ff;
+      transform: translateY(-4px);
+    }
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      color: #00e5ff;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.2);
+      color: #e8eaf0;
+    }
+
+    /* EDUCATION */
+    #education {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: #161822;
+      border: 1px solid #1e2130;
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+
+    .edu-card:hover { border-color: #ff4d6d; }
+
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00e5ff, #ff4d6d);
+    }
+
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e8eaf0;
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-school {
+      font-size: 0.82rem;
+      color: #00e5ff;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .edu-year {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
   </style>
 </head>
 <body>
@@ -393,6 +494,94 @@
           hardware and software to meet department goals. Ensured
           confidentiality of all organisational and departmental data.
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">// 03 — Skills</p>
+    <h2>What I Know</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">Languages & Web</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Design & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Photoshop</span>
+          <span class="skill-tag">Illustrator</span>
+          <span class="skill-tag">WordPress</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">OOP Design</span>
+          <span class="skill-tag">Prototyping</span>
+          <span class="skill-tag">UI / UX</span>
+          <span class="skill-tag">Code Development</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Leadership</span>
+          <span class="skill-tag">Project Management</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Mentoring</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">// 04 — Education</p>
+    <h2>Academic Path</h2>
+
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <div class="edu-degree">BSc in Software Engineering</div>
+        <div class="edu-school">ICBT · Cardiff Metropolitan University</div>
+        <div class="edu-year">Nov 2024 — Present</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-degree">BTEC HND — Computing & System Development</div>
+        <div class="edu-school">BCAS · Pearson IT</div>
+        <div class="edu-year">Mar 2022 — May 2024</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-degree">Diploma in Computer Hardware</div>
+        <div class="edu-school">Academy for Computer Technology (ACTE)</div>
+        <div class="edu-year">August 2014</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-degree">G.C.E O/L & A/L</div>
+        <div class="edu-school">Republican International School, Nuwara Eliya</div>
+        <div class="edu-year">2017 — 2021</div>
       </div>
 
     </div>
