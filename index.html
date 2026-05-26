@@ -861,14 +861,20 @@ nav {
       transform: translateY(-9px) rotate(-45deg);
     }
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
       #hamburger { display: flex; }
 
-      nav { padding: 1rem 1.5rem; }
+      nav {
+        padding: 1rem 1.5rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
 
       .nav-right {
         gap: 1rem;
         align-items: center;
+        flex-direction: row;
       }
 
       #navLinks {
