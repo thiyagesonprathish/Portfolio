@@ -35,6 +35,12 @@ nav {
       z-index: 1000;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
     .nav-logo {
       font-size: 1.4rem;
       font-weight: bold;
@@ -639,20 +645,130 @@ nav {
 
     #scrollTop:hover { transform: scale(1.1); }
     #scrollTop.show { display: flex; }
+
+    /* LIGHT MODE */
+    body.light {
+      background: #f0f4f8;
+      color: #0b0c10;
+    }
+
+    body.light nav {
+      background: rgba(240, 244, 248, 0.95);
+      border-bottom: 1px solid #d1d5db;
+    }
+
+    body.light .nav-logo { color: #0b0c10; }
+    body.light .nav-links a { color: #4b5563; }
+    body.light .nav-links a:hover { color: #00a8bf; }
+
+    body.light #hero { background: #f0f4f8; }
+
+    body.light .hero-name { color: #0b0c10; }
+    body.light .hero-sub { color: #4b5563; }
+
+    body.light .stat-card,
+    body.light .skill-group,
+    body.light .edu-card {
+      background: #ffffff;
+      border-color: #d1d5db;
+    }
+
+    body.light .stat-label,
+    body.light .timeline-desc,
+    body.light .about-text p,
+    body.light .timeline-company,
+    body.light .hero-sub,
+    body.light #contact p {
+      color: #4b5563;
+    }
+
+    body.light .timeline-role,
+    body.light .edu-degree,
+    body.light h2 {
+      color: #0b0c10;
+    }
+
+    body.light .timeline::before {
+      background: linear-gradient(to bottom, #00a8bf, transparent);
+    }
+
+    body.light .skill-tag {
+      background: rgba(0, 168, 191, 0.1);
+      border-color: rgba(0, 168, 191, 0.3);
+      color: #0b0c10;
+    }
+
+    body.light .divider { border-color: #d1d5db; }
+
+    body.light .contact-chip {
+      border-color: #d1d5db;
+      color: #4b5563;
+    }
+
+    body.light .contact-chip:hover {
+      border-color: #00a8bf;
+      color: #00a8bf;
+    }
+
+    body.light footer {
+      border-color: #d1d5db;
+      color: #4b5563;
+    }
+
+    body.light .section-label { color: #00a8bf; }
+    body.light .timeline-date { color: #00a8bf; }
+    body.light .edu-school { color: #00a8bf; }
+    body.light .skill-group-title { color: #00a8bf; }
+
+    /* TOGGLE BUTTON */
+#themeToggle {
+      background: transparent;
+      border: 1px solid #1e2130;
+      color: #e8eaf0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      position: static;
+    }
+
+    #themeToggle:hover {
+      border-color: #00e5ff;
+      color: #00e5ff;
+    }
+
+    body.light #themeToggle {
+      border-color: #d1d5db;
+      color: #0b0c10;
+    }
+
+    body.light #themeToggle:hover {
+      border-color: #00a8bf;
+      color: #00a8bf;
+    }
   </style>
 </head>
 <body>
 
-  <nav>
+<nav>
     <a href="#" class="nav-logo">PRATHISH THIYAGESON</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="themeToggle" title="Toggle light/dark mode">🌙</button>
+    </div>
   </nav>
+
 <!-- HERO -->
   <section id="hero">
      <canvas id="particles"></canvas>
@@ -910,6 +1026,21 @@ nav {
   </footer>
 
 <script>
+// ── THEME TOGGLE ──
+    const themeBtn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+      themeBtn.textContent = '☀️';
+    }
+
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      themeBtn.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
     // ── GLOWING CURSOR ──
     const cursor = document.createElement('div');
     cursor.classList.add('glow-cursor');
