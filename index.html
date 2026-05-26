@@ -489,6 +489,144 @@ nav {
       .divider { margin: 0 1.5rem; }
       h2 { font-size: 2rem; }
     }
+
+    /* TYPING ANIMATION */
+    .typing-text {
+      font-size: 1rem;
+      color: #00e5ff;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      min-height: 1.5rem;
+    }
+
+.cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1rem;
+      background: #00e5ff;
+      margin-left: 2px;
+      animation: blink 0.7s infinite;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* GLOWING CURSOR */
+    .glow-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00e5ff;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      box-shadow: 0 0 10px #00e5ff;
+    }
+
+    .glow-cursor-dot {
+      width: 5px;
+      height: 5px;
+      background: #00e5ff;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.05s ease;
+    }
+
+    /* COUNTER ANIMATION */
+    .stat-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #00e5ff;
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+
+    /* PARTICLE CANVAS */
+    #particles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #hero > *:not(#particles) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAVBAR SCROLL EFFECT */
+    nav.scrolled {
+      padding: 0.7rem 4rem;
+      background: rgba(11, 12, 16, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 229, 255, 0.05);
+    }
+
+    nav {
+      transition: padding 0.3s ease, background 0.3s ease;
+    }
+
+    /* SKILL BAR ANIMATION */
+    .skill-bar-wrap {
+      margin-top: 0.8rem;
+    }
+
+    .skill-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-bar {
+      height: 4px;
+      background: #1e2130;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00e5ff, #ff4d6d);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1.2s ease;
+    }
+
+    /* SCROLL TO TOP BUTTON */
+    #scrollTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: #00e5ff;
+      color: #0b0c10;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      box-shadow: 0 0 16px rgba(0,229,255,0.4);
+      transition: transform 0.2s;
+    }
+
+    #scrollTop:hover { transform: scale(1.1); }
+    #scrollTop.show { display: flex; }
   </style>
 </head>
 <body>
@@ -505,8 +643,12 @@ nav {
   </nav>
 <!-- HERO -->
   <section id="hero">
+     <canvas id="particles"></canvas>
     <div>
-      <span class="hero-tag">SOFTWARE ENGINEER · SRI LANKA</span>
+<span class="hero-tag">SOFTWARE ENGINEER · SRI LANKA</span>
+      <br><br>
+      <p class="typing-text" style="display:inline;"></p><span class="cursor"></span>
+      <br><br>
       <h1 class="hero-name">PRATHISH<br><span>THIYAGE</span>SON</h1>
       <p class="hero-sub">
         BSc Software Engineering student building clean interfaces
@@ -551,21 +693,21 @@ nav {
         </p>
       </div>
 
-      <div class="about-stats">
+<div class="about-stats">
         <div class="stat-card">
-          <div class="stat-num">2+</div>
+          <div class="stat-num" data-original="2+" data-suffix="+">2+</div>
           <div class="stat-label">Years at Orfium</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">3</div>
+          <div class="stat-num" data-original="3" data-suffix="">3</div>
           <div class="stat-label">Languages Spoken</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">6+</div>
+          <div class="stat-num" data-original="6+" data-suffix="+">6+</div>
           <div class="stat-label">Tools & Frameworks</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">BSc</div>
+          <div class="stat-num" data-original="BSc" data-suffix="">BSc</div>
           <div class="stat-label">In Progress — Cardiff Met</div>
         </div>
       </div>
@@ -745,23 +887,146 @@ nav {
     </div>
   </section>
 
+   <button id="scrollTop">↑</button>
+
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 PRATHISH THIYAGESON — BUILT WITH HTML · CSS · JS</p>
+    <p>© 2026 PRATHISH THIYAGESON — BUILT WITH HTML · CSS · JS</p>
   </footer>
 
-  <script>
-    // Add reveal class to all sections
+<script>
+    // ── GLOWING CURSOR ──
+    const cursor = document.createElement('div');
+    cursor.classList.add('glow-cursor');
+    const cursorDot = document.createElement('div');
+    cursorDot.classList.add('glow-cursor-dot');
+    document.body.appendChild(cursor);
+    document.body.appendChild(cursorDot);
+
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX - 10 + 'px';
+      cursor.style.top = e.clientY - 10 + 'px';
+      cursorDot.style.left = e.clientX - 2.5 + 'px';
+      cursorDot.style.top = e.clientY - 2.5 + 'px';
+    });
+
+    // ── TYPING ANIMATION ──
+    const roles = [
+      'Team Lead @ Orfium Sri Lanka',
+      'BSc Software Engineering Student',
+      'UI / UX Enthusiast',
+      'Problem Solver'
+    ];
+
+    const typingEl = document.querySelector('.typing-text');
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const current = roles[roleIndex];
+      if (isDeleting) {
+        typingEl.textContent = current.substring(0, charIndex--);
+      } else {
+        typingEl.textContent = current.substring(0, charIndex++);
+      }
+      if (!isDeleting && charIndex === current.length + 1) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+        return;
+      }
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+      setTimeout(type, isDeleting ? 50 : 100);
+    }
+
+    if (typingEl) type();
+
+    // ── PARTICLE BACKGROUND ──
+    const canvas = document.getElementById('particles');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
+      const dots = Array.from({ length: 60 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: (Math.random() - 0.5) * 0.4,
+        o: Math.random() * 0.5 + 0.2
+      }));
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        dots.forEach(d => {
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0,229,255,${d.o})`;
+          ctx.fill();
+          d.x += d.dx;
+          d.y += d.dy;
+          if (d.x < 0 || d.x > canvas.width) d.dx *= -1;
+          if (d.y < 0 || d.y > canvas.height) d.dy *= -1;
+        });
+
+        // Draw lines between close dots
+        dots.forEach((a, i) => {
+          dots.slice(i + 1).forEach(b => {
+            const dist = Math.hypot(a.x - b.x, a.y - b.y);
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = `rgba(0,229,255,${0.1 * (1 - dist / 100)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          });
+        });
+
+        requestAnimationFrame(drawParticles);
+      }
+      drawParticles();
+    }
+
+    // ── SCROLL REVEAL ──
     document.querySelectorAll('section, .timeline-item, .skill-group, .edu-card, .stat-card')
       .forEach(el => el.classList.add('reveal'));
 
-    // Intersection Observer to trigger animations on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, i * 80);
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+
+        // Counter animation for stat cards
+          const num = entry.target.querySelector('.stat-num');
+          if (num && !num.dataset.counted) {
+            num.dataset.counted = true;
+            const original = num.dataset.original;
+            const target = parseInt(original);
+            if (!isNaN(target)) {
+              let count = 0;
+              const suffix = num.dataset.suffix || '';
+              const interval = setInterval(() => {
+                count++;
+                num.textContent = count + suffix;
+                if (count >= target) {
+                  num.textContent = original;
+                  clearInterval(interval);
+                }
+              }, 40);
+            }
+          }
+
+          // Skill bar animation
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
+
           observer.unobserve(entry.target);
         }
       });
@@ -769,20 +1034,28 @@ nav {
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Active nav link highlight on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
+    // ── NAVBAR SHRINK ON SCROLL ──
+    const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+
+      // Active nav link
       let current = '';
-      sections.forEach(s => {
+      document.querySelectorAll('section[id]').forEach(s => {
         if (window.scrollY >= s.offsetTop - 120) current = s.id;
       });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === `#${current}`
-          ? '#00e5ff' : '';
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? '#00e5ff' : '';
       });
+
+      // Scroll to top button
+      document.getElementById('scrollTop')
+        .classList.toggle('show', window.scrollY > 400);
     });
+
+    // ── SCROLL TO TOP ──
+    document.getElementById('scrollTop')
+      .addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 </html>
