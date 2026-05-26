@@ -646,14 +646,14 @@ nav {
     #scrollTop:hover { transform: scale(1.1); }
     #scrollTop.show { display: flex; }
 
-    /* LIGHT MODE */
+/* LIGHT MODE */
     body.light {
       background: #f0f4f8;
       color: #0b0c10;
     }
 
     body.light nav {
-      background: rgba(240, 244, 248, 0.95);
+      background: rgba(240, 244, 248, 0.98);
       border-bottom: 1px solid #d1d5db;
     }
 
@@ -662,63 +662,104 @@ nav {
     body.light .nav-links a:hover { color: #00a8bf; }
 
     body.light #hero { background: #f0f4f8; }
-
+    body.light .hero-tag {
+      color: #00a8bf;
+      border-color: #00a8bf;
+    }
     body.light .hero-name { color: #0b0c10; }
+    body.light .hero-name span { color: #00a8bf; }
     body.light .hero-sub { color: #4b5563; }
+    body.light .typing-text { color: #00a8bf; }
+    body.light .cursor { background: #00a8bf; }
 
-    body.light .stat-card,
-    body.light .skill-group,
-    body.light .edu-card {
+    body.light .section-label { color: #00a8bf; }
+
+    body.light h2 { color: #0b0c10; }
+
+    body.light .about-text p { color: #4b5563; }
+    body.light .about-text p strong { color: #0b0c10; }
+
+    body.light .stat-card {
       background: #ffffff;
       border-color: #d1d5db;
     }
-
-    body.light .stat-label,
-    body.light .timeline-desc,
-    body.light .about-text p,
-    body.light .timeline-company,
-    body.light .hero-sub,
-    body.light #contact p {
-      color: #4b5563;
-    }
-
-    body.light .timeline-role,
-    body.light .edu-degree,
-    body.light h2 {
-      color: #0b0c10;
-    }
+    body.light .stat-card:hover { border-color: #00a8bf; }
+    body.light .stat-num { color: #00a8bf; }
+    body.light .stat-label { color: #4b5563; }
 
     body.light .timeline::before {
       background: linear-gradient(to bottom, #00a8bf, transparent);
     }
+    body.light .timeline-item::before {
+      background: #00a8bf;
+      box-shadow: 0 0 12px #00a8bf;
+    }
+    body.light .timeline-date { color: #00a8bf; }
+    body.light .timeline-role { color: #0b0c10; }
+    body.light .timeline-company { color: #4b5563; }
+    body.light .timeline-desc { color: #4b5563; }
 
+    body.light .skill-group {
+      background: #ffffff;
+      border-color: #d1d5db;
+    }
+    body.light .skill-group:hover { border-color: #00a8bf; }
+    body.light .skill-group-title { color: #00a8bf; }
     body.light .skill-tag {
       background: rgba(0, 168, 191, 0.1);
       border-color: rgba(0, 168, 191, 0.3);
       color: #0b0c10;
     }
 
-    body.light .divider { border-color: #d1d5db; }
+    body.light .edu-card {
+      background: #ffffff;
+      border-color: #d1d5db;
+    }
+    body.light .edu-card:hover { border-color: #00a8bf; }
+    body.light .edu-degree { color: #0b0c10; }
+    body.light .edu-school { color: #00a8bf; }
+    body.light .edu-year { color: #4b5563; }
 
+    body.light #contact p { color: #4b5563; }
     body.light .contact-chip {
       border-color: #d1d5db;
       color: #4b5563;
     }
-
     body.light .contact-chip:hover {
       border-color: #00a8bf;
       color: #00a8bf;
     }
 
+    body.light .divider { border-color: #d1d5db; }
+
     body.light footer {
       border-color: #d1d5db;
       color: #4b5563;
+      background: #f0f4f8;
     }
 
-    body.light .section-label { color: #00a8bf; }
-    body.light .timeline-date { color: #00a8bf; }
-    body.light .edu-school { color: #00a8bf; }
-    body.light .skill-group-title { color: #00a8bf; }
+    body.light #scrollTop {
+      background: #00a8bf;
+      box-shadow: 0 0 16px rgba(0,168,191,0.4);
+    }
+
+    body.light .btn-outline {
+      border-color: #d1d5db;
+      color: #0b0c10;
+    }
+    body.light .btn-outline:hover {
+      border-color: #00a8bf;
+      color: #00a8bf;
+    }
+
+    body.light #themeToggle {
+      border-color: #d1d5db;
+      color: #0b0c10;
+    }
+    body.light #themeToggle:hover {
+      border-color: #00a8bf;
+      color: #00a8bf;
+    }
 
     /* TOGGLE BUTTON */
 #themeToggle {
