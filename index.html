@@ -925,6 +925,131 @@ nav {
       h2 { font-size: 2rem; }
       .about-stats { grid-template-columns: 1fr 1fr; }
     }
+
+    /* CONTACT FORM */
+    .contact-form {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #6b7280;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: #161822;
+      border: 1px solid #1e2130;
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      color: #e8eaf0;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.25s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #00e5ff;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .btn-send {
+      grid-column: 1 / -1;
+      padding: 0.9rem 2rem;
+      background: #00e5ff;
+      color: #0b0c10;
+      border: 2px solid #00e5ff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: inherit;
+    }
+
+    .btn-send:hover {
+      background: transparent;
+      color: #00e5ff;
+    }
+
+    .form-success {
+      display: none;
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 6px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.3);
+      color: #00e5ff;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    /* Light mode form */
+    body.light .form-group label { color: #9ca3af; }
+    body.light .form-group input,
+    body.light .form-group textarea {
+      background: #ffffff;
+      border-color: #e5e7eb;
+      color: #111827;
+    }
+    body.light .form-group input:focus,
+    body.light .form-group textarea:focus {
+      border-color: #6366f1;
+    }
+    body.light .btn-send {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+    body.light .btn-send:hover {
+      background: transparent;
+      color: #6366f1;
+    }
+    body.light .form-success {
+      background: rgba(99,102,241,0.08);
+      border-color: rgba(99,102,241,0.3);
+      color: #6366f1;
+    }
+
+    @media (max-width: 768px) {
+      .contact-form {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full {
+        grid-column: 1;
+      }
+      .btn-send {
+        grid-column: 1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1195,6 +1320,84 @@ nav {
       </a>
 
     </div>
+    <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">// 05 — Contact</p>
+    <h2>Let's Talk</h2>
+    <p>Open to freelance projects, collaborations, and full-time roles.</p>
+    <p>Reach out through any channel below.</p>
+
+    <div class="contact-links">
+
+      <a href="mailto:thiyagesonprathish@gmail.com" class="contact-chip">
+        ...
+      </a>
+
+      <a href="tel:+94771025734" class="contact-chip">
+        ...
+      </a>
+
+      <a href="https://linkedin.com/in/prathish-thiyageson02315926a" target="_blank" class="contact-chip">
+        ...
+      </a>
+
+    </div>
+
+    <!-- ADD THE FORM HERE 👇 -->
+    <form
+      class="contact-form"
+      id="contactForm"
+      action="https://formspree.io/f/xeednqek"
+      method="POST">
+
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="John Doe"
+          required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="john@example.com"
+          required />
+      </div>
+
+      <div class="form-group full">
+        <label for="subject">Subject</label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Let's work together!"
+          required />
+      </div>
+
+      <div class="form-group full">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Tell me about your project or opportunity..."
+          required></textarea>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        ✅ MESSAGE SENT SUCCESSFULLY — I'LL GET BACK TO YOU SOON!
+      </div>
+
+      <button type="submit" class="btn-send">Send Message →</button>
+
+    </form>
+
+  </section>
   </section>
 
    <button id="scrollTop">↑</button>
@@ -1205,6 +1408,37 @@ nav {
   </footer>
 
 <script>
+  // ── CONTACT FORM ──
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('.btn-send');
+        const success = document.getElementById('formSuccess');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            success.style.display = 'block';
+            contactForm.reset();
+            btn.textContent = 'Sent! ✓';
+          } else {
+            btn.textContent = 'Error — Try Again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Error — Try Again';
+          btn.disabled = false;
+        }
+      });
+    }
 // ── HAMBURGER MENU ──
     const hamburger = document.getElementById('hamburger');
     const navLinksList = document.getElementById('navLinks');
