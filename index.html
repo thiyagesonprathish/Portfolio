@@ -1108,6 +1108,55 @@ nav {
     body.loading {
       overflow: hidden;
     }
+
+    /* PARALLAX */
+    .parallax-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(0,229,255,0.05) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,77,109,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      will-change: transform;
+      z-index: 0;
+    }
+
+    .parallax-shape {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform;
+      opacity: 0.15;
+    }
+
+    .parallax-shape-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #00e5ff, transparent);
+      top: -100px;
+      left: -100px;
+    }
+
+    .parallax-shape-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #ff4d6d, transparent);
+      bottom: -50px;
+      right: -50px;
+    }
+
+    .parallax-shape-3 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, #00e5ff, transparent);
+      top: 40%;
+      right: 10%;
+    }
+
+    /* Make hero position relative for parallax children */
+    #hero {
+      position: relative;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -1142,6 +1191,10 @@ nav {
 <!-- HERO -->
   <section id="hero">
      <canvas id="particles"></canvas>
+      <div class="parallax-bg" id="parallaxBg"></div>
+    <div class="parallax-shape parallax-shape-1" id="parallaxShape1"></div>
+    <div class="parallax-shape parallax-shape-2" id="parallaxShape2"></div>
+    <div class="parallax-shape parallax-shape-3" id="parallaxShape3"></div>
     <div>
 <span class="hero-tag">SOFTWARE ENGINEER · SRI LANKA</span>
       <br><br>
@@ -1500,6 +1553,48 @@ nav {
       });
     });
 
+    // ── PARALLAX SCROLLING ──
+    const parallaxBg = document.getElementById('parallaxBg');
+    const parallaxShape1 = document.getElementById('parallaxShape1');
+    const parallaxShape2 = document.getElementById('parallaxShape2');
+    const parallaxShape3 = document.getElementById('parallaxShape3');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+
+      // Background moves at 30% of scroll speed
+      if (parallaxBg) {
+        parallaxBg.style.transform = `translateY(${scrollY * 0.3}px)`;
+      }
+
+      // Shapes move at different speeds for depth
+      if (parallaxShape1) {
+        parallaxShape1.style.transform = `translateY(${scrollY * 0.5}px)`;
+      }
+      if (parallaxShape2) {
+        parallaxShape2.style.transform = `translateY(${scrollY * 0.2}px)`;
+      }
+      if (parallaxShape3) {
+        parallaxShape3.style.transform = `translateY(${scrollY * 0.4}px)`;
+      }
+    });
+
+    // Mouse parallax effect on hero
+    document.getElementById('hero').addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      if (parallaxShape1) {
+        parallaxShape1.style.transform += ` translate(${x * 0.5}px, ${y * 0.5}px)`;
+      }
+      if (parallaxShape2) {
+        parallaxShape2.style.transform += ` translate(${x * 0.3}px, ${y * 0.3}px)`;
+      }
+      if (parallaxShape3) {
+        parallaxShape3.style.transform += ` translate(${x * 0.4}px, ${y * 0.4}px)`;
+      }
+    });
+    
 // ── LOADING SCREEN ──
     document.body.classList.add('loading');
     const loader = document.getElementById('loader');
