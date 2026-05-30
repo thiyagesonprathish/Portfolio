@@ -74,7 +74,7 @@ nav {
     .nav-links a:hover { color: #00e5ff; }
 
     /* HERO */
-    #hero {
+#hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -1120,38 +1120,6 @@ nav {
       z-index: 0;
     }
 
-    .parallax-shape {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      will-change: transform;
-      opacity: 0.50;
-    }
-
-.parallax-shape-1 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0,229,255,0.06), transparent 70%);
-      top: -150px;
-      left: -150px;
-    }
-
-    .parallax-shape-2 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,77,109,0.05), transparent 70%);
-      bottom: -100px;
-      right: -100px;
-    }
-
-    .parallax-shape-3 {
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(0,229,255,0.04), transparent 70%);
-      top: 40%;
-      right: 10%;
-    }
-
     /* Make hero position relative for parallax children */
     #hero {
       position: relative;
@@ -1192,11 +1160,8 @@ nav {
   <section id="hero">
      <canvas id="particles"></canvas>
       <div class="parallax-bg" id="parallaxBg"></div>
-    <div class="parallax-shape parallax-shape-1" id="parallaxShape1"></div>
-    <div class="parallax-shape parallax-shape-2" id="parallaxShape2"></div>
-    <div class="parallax-shape parallax-shape-3" id="parallaxShape3"></div>
-    <div>
-<span class="hero-tag">SOFTWARE ENGINEER · SRI LANKA</span>
+<div style="position:relative; z-index:1; text-align:center; width:100%; max-width:900px; margin:0 auto;">
+      <span class="hero-tag">SOFTWARE ENGINEER · SRI LANKA</span>
       <br><br>
       <p class="typing-text" style="display:inline;"></p><span class="cursor"></span>
       <br><br>
@@ -1562,21 +1527,6 @@ nav {
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
 
-      // Background moves at 30% of scroll speed
-      if (parallaxBg) {
-        parallaxBg.style.transform = `translateY(${scrollY * 0.3}px)`;
-      }
-
-      // Shapes move at different speeds for depth
-      if (parallaxShape1) {
-        parallaxShape1.style.transform = `translateY(${scrollY * 0.5}px)`;
-      }
-      if (parallaxShape2) {
-        parallaxShape2.style.transform = `translateY(${scrollY * 0.2}px)`;
-      }
-      if (parallaxShape3) {
-        parallaxShape3.style.transform = `translateY(${scrollY * 0.4}px)`;
-      }
     });
 
     // Mouse parallax effect on hero
