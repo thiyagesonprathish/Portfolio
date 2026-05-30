@@ -1050,9 +1050,75 @@ nav {
         grid-column: 1;
       }
     }
+
+    /* LOADING SCREEN */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #0b0c10;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-logo {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: #e8eaf0;
+      text-transform: uppercase;
+    }
+
+    .loader-logo span { color: #00e5ff; }
+
+    .loader-bar-wrap {
+      width: 200px;
+      height: 2px;
+      background: #1e2130;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00e5ff, #ff4d6d);
+      border-radius: 2px;
+      transition: width 0.05s linear;
+      box-shadow: 0 0 10px #00e5ff;
+    }
+
+    .loader-percent {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: #6b7280;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Hide scrollbar while loading */
+    body.loading {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
+<!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-logo">PT<span>.</span></div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loaderBar"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercent">0%</div>
+  </div>
 
 <nav>
     <a href="#" class="nav-logo">PRATHISH THIYAGESON</a>
@@ -1433,6 +1499,27 @@ nav {
         navLinksList.classList.remove('open');
       });
     });
+
+// ── LOADING SCREEN ──
+    document.body.classList.add('loading');
+    const loader = document.getElementById('loader');
+    const loaderBar = document.getElementById('loaderBar');
+    const loaderPercent = document.getElementById('loaderPercent');
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 15;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          document.body.classList.remove('loading');
+        }, 400);
+      }
+      loaderBar.style.width = progress + '%';
+      loaderPercent.textContent = Math.floor(progress) + '%';
+    }, 100);
 
 // ── THEME TOGGLE ──
     const themeBtn = document.getElementById('themeToggle');
