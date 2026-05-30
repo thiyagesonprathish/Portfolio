@@ -475,16 +475,22 @@ nav {
     .hero-sub  { animation: fadeUp 0.8s 0.3s ease both; }
     .hero-btns { animation: fadeUp 0.8s 0.4s ease both; }
 
-    .reveal {
+.reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    .reveal.visible:nth-child(1) { transition-delay: 0ms; }
+    .reveal.visible:nth-child(2) { transition-delay: 100ms; }
+    .reveal.visible:nth-child(3) { transition-delay: 200ms; }
+    .reveal.visible:nth-child(4) { transition-delay: 300ms; }
+    .reveal.visible:nth-child(5) { transition-delay: 400ms; }
 
     /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -1685,10 +1691,10 @@ nav {
     document.querySelectorAll('section, .timeline-item, .skill-group, .edu-card, .stat-card')
       .forEach(el => el.classList.add('reveal'));
 
-    const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          setTimeout(() => entry.target.classList.add('visible'), i * 120);
 
         // Counter animation for stat cards
           const num = entry.target.querySelector('.stat-num');
